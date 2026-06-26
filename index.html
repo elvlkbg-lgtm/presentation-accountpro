@@ -3,295 +3,552 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Защита на Дипломна Работа - Елеонора Василева</title>
+    <title>Дипломна Защита - Елеонора Василева - ФМИ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
-        body { background-color: #012b1d; color: #1f2937; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        
-        .presentation-container { width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; position: relative; }
-        
-        .slide { width: 100%; height: 100%; display: none; padding: 40px 60px; flex-direction: column; justify-content: flex-start; position: relative; }
-        .slide.active { display: flex; }
-        
-        /* Светлозелена заглавна страница, клоняща към бяло по Ваше искане */
-        .slide-title-page { background: linear-gradient(135deg, #f0fdf4 0%, #e6fbf0 50%, #d1fae5 100%); color: #065f46; justify-content: center; align-items: center; text-align: center; }
-        
-        /* Стандартни слайдове със свеж изумруден акцент */
-        .slide-standard { background: linear-gradient(135deg, #ffffff 0%, #f4fbf7 100%); border-top: 8px solid #10b981; }
-        
-        .header-container { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 20px; border-bottom: 2px solid #e5e7eb; padding-bottom: 15px; }
-        .slide-title { font-size: 2.2rem; color: #065f46; font-weight: 700; }
-        
-        /* Офлайн Векторни лога за СУ и ФМИ */
-        .logo-capsule { display: flex; gap: 20px; align-items: center; background: rgba(255,255,255,0.9); padding: 10px 20px; border-radius: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .logo-svg { width: 50px; height: 50px; }
-        
-        .content-box { width: 100%; flex: 1; display: grid; grid-template-columns: 1fr; gap: 20px; font-size: 1.2rem; line-height: 1.5; color: #374151; }
-        .two-cols { grid-template-columns: 1fr 1fr; }
-        
-        .card { background: #ffffff; border-left: 5px solid #10b981; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .card h3 { color: #047857; margin-bottom: 10px; font-size: 1.3rem; }
-        .card ul { margin-left: 20px; }
-        .card li { margin-bottom: 6px; }
-        
-        /* Графики и Мокапи */
-        .chart-container { display: flex; justify-content: center; align-items: center; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e5e7eb; }
-        
-        .mockup-browser { border: 1px solid #d1d5db; border-radius: 8px; overflow: hidden; background: white; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); width: 100%; height: 100%; display: flex; flex-direction: column; }
-        .mockup-header { background: #e5e7eb; padding: 8px 15px; display: flex; align-items: center; gap: 8px; }
-        .mockup-dot { width: 12px; height: 12px; border-radius: 50%; background: #ef4444; }
-        .mockup-dot:nth-child(2) { background: #f59e0b; }
-        .mockup-dot:nth-child(3) { background: #10b981; }
-        .mockup-url { background: white; padding: 4px 15px; border-radius: 4px; font-size: 0.85rem; flex: 1; margin-left: 15px; color: #6b7280; text-align: left; border: 1px solid #d1d5db; }
-        .mockup-body { pading: 20px; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #f9fafb; text-align: center; padding: 20px; }
-        
-        /* Видео Плеър */
-        .video-wrapper { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: #000; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
-        video { width: 100%; height: 100%; object-fit: contain; }
-
-        /* Таблица */
-        .req-table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .req-table th { background-color: #10b981; color: white; padding: 12px; text-align: left; }
-        .req-table td { padding: 12px; border-bottom: 1px solid #e5e7eb; font-size: 1.05rem; vertical-align: top; }
-        
-        /* Навигация */
-        .nav-controls { position: absolute; bottom: 30px; right: 40px; display: flex; gap: 15px; z-index: 100; }
-        .nav-btn { background-color: #10b981; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .nav-btn:hover { background-color: #059669; }
-        .footer-banner { position: absolute; bottom: 15px; left: 40px; font-size: 0.85rem; color: #9ca3af; }
-        
-        .main-title { font-size: 2.5rem; font-weight: 800; color: #065f46; line-height: 1.2; margin-bottom: 20px; }
-        .badge { background-color: #10b981; color: white; padding: 4px 10px; border-radius: 4px; font-weight: bold; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .slide { display: none; min-height: 85vh; }
+        .slide.active { display: flex; flex-direction: column; justify-content: space-between; }
+        .progress-bar { transition: width 0.3s ease-in-out; }
     </style>
 </head>
-<body>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-emerald-500 selection:text-white">
 
-<div class="presentation-container">
+    <!-- ТОП НАВИГАЦИЯ И ПРОГРЕС -->
+    <header class="bg-slate-800/80 backdrop-blur border-b border-slate-700/50 sticky top-0 z-50 px-6 py-3 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+            <span class="font-semibold tracking-wide text-sm md:text-base text-slate-200">МАГИСТЪРСКА ТЕЗА • ФМИ</span>
+        </div>
+        <div class="text-xs md:text-sm font-medium bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-700 text-emerald-400">
+            Слайд <span id="current-index">1</span> от 16
+        </div>
+    </header>
 
-    <!-- СЛАЙД 1: ЗАГЛАВЕН (СВЕТЛОЗЕЛЕН / КЛОНЯЩ КЪМ БЯЛО) -->
-    <div class="slide slide-title-page active">
-        <div class="logo-capsule" style="margin-bottom: 25px;">
-            <svg class="logo-svg" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="45" fill="none" stroke="#065f46" stroke-width="3"/>
-                <path d="M30,35 L70,35 M50,35 L50,75 M35,75 L65,75" stroke="#065f46" stroke-width="4"/>
-                <text x="50" y="22" text-anchor="middle" font-size="7" font-weight="bold" fill="#065f46">СУ СВ.КЛ.ОХРИДСКИ</text>
-            </svg>
-            <svg class="logo-svg" viewBox="0 0 100 100">
-                <rect x="20" y="20" width="60" height="60" rx="10" fill="none" stroke="#10b981" stroke-width="3"/>
-                <path d="M30,40 Q50,20 70,40 T30,70" fill="none" stroke="#10b981" stroke-width="4"/>
-                <text x="50" y="88" text-anchor="middle" font-size="9" font-weight="bold" fill="#065f46">ФМИ</text>
-            </svg>
-        </div>
-        <h1 class="main-title">Софтуерна система за търсене и предлагане на счетоводни услуги от професионални счетоводители</h1>
-        <div style="font-size: 1.2rem; color: #374151; line-height: 1.7;">
-            <p><strong>Дипломант:</strong> Елеонора Евгениева Василева &nbsp;|&nbsp; <span class="badge">Фак. №: 6MI3400278</span></p>
-            <p><strong>Специалност:</strong> Технологично предприемачество и иновации в ИТ</p>
-            <p><strong>Научен ръководител:</strong> гл. ас. д-р Сия Цолова</p>
-            <p style="margin-top: 10px; color: #6b7280; font-size: 1rem;">София, 2026 г.</p>
-        </div>
+    <div class="w-full bg-slate-800 h-1.5">
+        <div id="progress" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-1.5 progress-bar" style="width: 6.25%"></div>
     </div>
 
-    <!-- СЛАЙД 2: ПРОУЧВАНЕ И СТАТИСТИКА (ГРАФИКА) -->
-    <div class="slide slide-standard">
-        <div class="header-container"><h2 class="slide-title">Анализ на нуждите и пазарно проучване</h2></div>
-        <div class="content-box two-cols">
-            <div class="card">
-                <h3>Резултати от анкетите</h3>
-                <p>Проучването сред МСП в България показва критична нужда от автоматизация:</p>
-                <ul style="margin-top: 10px;">
-                    <li><strong>84%</strong> изпитват затруднения при първоначалния подбор на легитимен експерт.</li>
-                    <li><strong>76%</strong> настояват за интеграция на дигитална рейтингова система.</li>
-                </ul>
-            </div>
-            <div class="chart-container">
-                <!-- Векторна секторна диаграма -->
-                <svg viewBox="0 0 160 160" style="width: 70%; height: 70%;">
-                    <circle cx="80" cy="80" r="50" fill="none" stroke="#e5e7eb" stroke-width="20"/>
-                    <circle cx="80" cy="80" r="50" fill="none" stroke="#10b981" stroke-width="20" stroke-dasharray="263 314" stroke-dashoffset="0"/>
-                    <text x="80" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#065f46">84%</text>
-                    <text x="80" y="150" text-anchor="middle" font-size="9" fill="#374151">Искат смарт филтриране</text>
-                </svg>
-            </div>
-        </div>
-    </div>
-
-    <!-- СЛАЙД 3: ИЗИСКВАНИЯ (ТАБЛИЦА) -->
-    <div class="slide slide-standard">
-        <div class="header-container"><h2 class="slide-title">Спецификация на софтуерните изисквания</h2></div>
-        <div class="content-box">
-            <table class="req-table">
-                <tr>
-                    <th style="width: 50%;">Функционални изисквания</th>
-                    <th style="width: 50%;">Нефункционални изисквания</th>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>• Смарт търсачка:</strong> Филтриране по ниша, град и рейтинг.<br><br>
-                        <strong>• Работно табло:</strong> Индивидуални профили за управление на заявките.<br><br>
-                        <strong>• ИДЕС Скрапер:</strong> Автоматизирано софтуерно извличане на данни за проверка на одитори.
-                    </td>
-                    <td>
-                        <strong>• Защита на данните:</strong> Изолация на информацията на ниво база данни (RLS).<br><br>
-                        <strong>• Performance:</strong> Скорост под 1.5 сек. чрез Netlify Edge CDN.<br><br>
-                        <strong>• Наличност:</strong> 99.9% надеждност на Serverless облачната инфраструктура.
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <!-- СЛАЙД 4: СОФТУЕРНА АРХИТЕКТУРА (ГРАФИКА) -->
-    <div class="slide slide-standard">
-        <div class="header-container"><h2 class="slide-title">Проектиране и софтуерна архитектура</h2></div>
-        <div class="content-box two-cols">
-            <div class="card">
-                <h3>Трислоен Serverless Модел</h3>
-                <p>Системата премахва нуждата от класическа поддръжка на сървъри и гарантира неограничена мащабируемост:</p>
-                <ul style="margin-top: 8px;">
-                    <li><strong>Клиентски слой:</strong> React SPA приложение.</li>
-                    <li><strong>Облачен шлюз:</strong> Supabase Auth & Edge API.</li>
-                    <li><strong>База данни:</strong> PostgreSQL с Row Level Security.</li>
-                </ul>
-            </div>
-            <div class="chart-container" style="background: #f9fafb;">
-                <svg viewBox="0 0 200 160" style="width: 100%; height: 100%;">
-                    <rect x="20" y="10" width="160" height="30" rx="5" fill="#10b981"/>
-                    <text x="100" y="28" text-anchor="middle" fill="white" font-size="10" font-weight="bold">React UI (Netlify CDN)</text>
-                    <path d="M100,40 L100,65" stroke="#065f46" stroke-width="2"/>
-                    <rect x="20" y="65" width="160" height="30" rx="5" fill="#34d399"/>
-                    <text x="100" y="83" text-anchor="middle" fill="#065f46" font-size="10" font-weight="bold">Supabase Security / RLS</text>
-                    <path d="M100,95 L100,120" stroke="#065f46" stroke-width="2"/>
-                    <rect x="40" y="120" width="120" height="30" rx="5" fill="#047857"/>
-                    <text x="100" y="138" text-anchor="middle" fill="white" font-size="10" font-weight="bold">PostgreSQL Database</text>
-                </svg>
-            </div>
-        </div>
-    </div>
-
-    <!-- СЛАЙД 5: РЕАЛИЗАЦИЯ - НАЧАЛНА СТРАНИЦА (УЕБ МОКАП) -->
-    <div class="slide slide-standard">
-        <div class="header-container"><h2 class="slide-title">Реализация: Потребителски интерфейс</h2></div>
-        <div class="content-box two-cols">
-            <div class="card">
-                <h3>Начална страница и Смарт филтри</h3>
-                <p>Интерфейсът пресъздава оригиналната платформа в Netlify[cite: 4]:</p>
-                <ul>
-                    <li>Изчистена търсачка за мигновен избор на експерт[cite: 4].</li>
-                    <li>Адаптивен дизайн, съобразен с корпоративната идентичност[cite: 4].</li>
-                </ul>
-            </div>
-            <div class="mockup-browser">
-                <div class="mockup-header">
-                    <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
-                    <div class="mockup-url">account-pro.netlify.app</div>
+    <!-- ОСНОВЕН КОНТЕНТ ЗА СЛАЙДОВЕТЕ -->
+    <main class="flex-grow container mx-auto px-4 md:px-8 py-6 flex flex-col justify-center">
+        
+        <!-- СЛАЙД 1: ЗАГЛАВЕН -->
+        <div class="slide active" id="slide-1">
+            <div class="text-center my-auto space-y-6 max-w-4xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-medium text-xs uppercase tracking-wider">
+                    <i class="fas fa-university"></i> Софийски университет „Св. Климент Охридски“
                 </div>
-                <div class="mockup-body" style="background: #f0fdf4;">
-                    <h4 style="color: #065f46; font-size: 1.4rem; margin-bottom: 10px;">AccountPro</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: 15px; color: #374151;">Намерете сертифициран счетоводител</p>
-                    <div style="background: white; border: 1px solid #10b981; padding: 8px 15px; border-radius: 4px; display: flex; width: 80%; justify-content: space-between; align-items: center;">
-                        <span style="color: #9ca3af; font-size: 0.8rem;">Град, Счетоводна ниша...</span>
-                        <button style="background: #10b981; color: white; border: none; padding: 4px 10px; border-radius: 3px; font-size: 0.8rem;">Търсене</button>
+                <h1 class="text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-white">
+                    Софтуерна система за търсене и предлагане на счетоводни услуги от професионални счетоводители[cite: 1, 2]
+                </h1>
+                <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
+                    Проектиране и разработка на съвременна двустранна маркетплейс платформа с автоматизирана верификация[cite: 1, 2].
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 text-left bg-slate-800/40 p-6 rounded-2xl border border-slate-700/60 shadow-xl">
+                    <div class="space-y-2">
+                        <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Дипломант:</p>
+                        <p class="text-lg font-bold text-white">Елеонора Евгениева Василева[cite: 1, 2]</p>
+                        <p class="text-sm text-emerald-400 font-medium">Фак. № 6MI3400278[cite: 1, 2]</p>
+                        <p class="text-xs text-slate-400">Специалност: ТЕИИТ[cite: 1, 2]</p>
+                    </div>
+                    <div class="space-y-2 md:border-l md:border-slate-700 md:pl-6">
+                        <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Научен ръководител:</p>
+                        <p class="text-lg font-bold text-white">гл. ас. д-р Сия Цолова[cite: 1, 2]</p>
+                        <p class="text-xs text-slate-400">Факултет по математика и информатика[cite: 1, 2]</p>
+                        <p class="text-xs text-slate-400">София, 2026 г.[cite: 1, 2]</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- СЛАЙД 6: РЕАЛИЗАЦИЯ - ВИДЕО ДЕМОНСТРАЦИЯ (НОВ СЛАЙД С ВИДЕО ПЛЕЪР) -->
-    <div class="slide slide-standard">
-        <div class="header-container"><h2 class="slide-title">Реализация: Видео демонстрация на системата</h2></div>
-        <div class="content-box two-cols" style="grid-template-columns: 40% 60%;">
-            <div class="card" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
-                <h3>4-минутен преглед</h3>
-                <p>Видео запис от реалната софтуерна среда, илюстриращ:</p>
-                <ul style="margin-top: 10px;">
-                    <li>Регистрация и автентикация на потребител[cite: 4].</li>
-                    <li>Търсене в реално време с филтри[cite: 4].</li>
-                    <li>Динамична промяна на данните в таблото при изпращане на заявка[cite: 4].</li>
-                </ul>
-            </div>
-            <!-- РЕАЛЕН ВИДЕО ПЛЕЪР -->
-            <div class="video-wrapper">
-                <video controls id="demoVideo">
-                    <source src="demo.mp4" type="video/mp4">
-                    Вашият браузър не поддържа видео тагове. Моля, поставете видеото с име "demo.mp4" в същата папка.
-                </video>
-            </div>
-        </div>
-    </div>
-
-    <!-- СЛАЙД 7: БЪДЕЩО РАЗВИТИЕ (БЕЗ ЦЕНИ) -->
-    <div class="slide slide-standard">
-        <div class="header-container"><h2 class="slide-title">Насоки за бъдещо развитие</h2></div>
-        <div class="content-box two-cols">
-            <div class="card">
-                <h3>Интелигентни разширения</h3>
-                <ul>
-                    <li><strong>AI Модул (OCR):</strong> Автоматизирано софтуерно разпознаване и счетоводно класифициране на сканирани фактури[cite: 4].</li>
-                    <li><strong>КЕП Сигурност:</strong> Подписване на договори с Квалифициран електронен подпис директно в платформата[cite: 4].</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>Архитектурно надграждане</h3>
-                <ul>
-                    <li>Трансформиране на платформата в Progressive Web Application (PWA) за мобилни устройства[cite: 4].</li>
-                    <li>Локализация за чужди пазари[cite: 4].</li>
-                </ul>
+        <!-- СЛАЙД 2: АКТУАЛНОСТ НА ПРОБЛЕМА -->
+        <div class="slide" id="slide-2">
+            <div class="space-y-6 max-w-5xl mx-auto w-full my-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-white border-l-4 border-emerald-500 pl-4">1. Актуалност и дефиниция на проблема[cite: 1, 2]</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-4">
+                    <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-emerald-400 mb-4 flex items-center gap-2">
+                                <i class="fas fa-chart-line"></i> Контекст на пазара[cite: 2]
+                            </h3>
+                            <p class="text-slate-300 leading-relaxed mb-4 text-sm md:text-base">
+                                В България оперират над 400 000 активни микро, малки и средни предприятия (МСП)[cite: 2]. Всяко едно от тях е законово обвързано с регулярна счетоводна, данъчна и осигурителна отчетност[cite: 2].
+                            </p>
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-700/50 text-center">
+                            <span class="text-3xl font-black text-white block">> 400К</span>
+                            <span class="text-xs text-slate-400 uppercase tracking-wider">Активни фирми в страната[cite: 2]</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-red-500/10 border border-red-500/20 p-5 rounded-xl flex gap-4">
+                            <div class="text-red-400 text-xl"><i class="fas fa-exclamation-triangle"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm md:text-base">Липса на технологична среда[cite: 1, 2]</h4>
+                                <p class="text-xs md:text-sm text-slate-400 mt-1">Няма централизиран софтуерен инструмент за бърза, прозрачна и сигурна връзка между бизнеса и експертите[cite: 1, 2].</p>
+                            </div>
+                        </div>
+                        <div class="bg-red-500/10 border border-red-500/20 p-5 rounded-xl flex gap-4">
+                            <div class="text-red-400 text-xl"><i class="fas fa-user-shield"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm md:text-base">Риск от нелегитимни практики[cite: 2]</h4>
+                                <p class="text-xs md:text-sm text-slate-400 mt-1">Трудно се проверява реалната квалификация, членството в професионални съюзи и софтуерната легитимност на лицата[cite: 1, 2].</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- СЛАЙД 8: ЗАКЛЮЧЕНИЕ -->
-    <div class="slide slide-standard" style="background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%); text-align: center; justify-content: center; align-items: center;">
-        <h1 style="font-size: 3rem; color: #065f46; margin-bottom: 20px;">Благодаря за вниманието!</h1>
-        <p style="font-size: 1.4rem; color: #374151; margin-bottom: 30px;">Въпроси и дискусия по проекта</p>
-        <div class="card" style="display: inline-block; text-align: left; min-width: 450px; border-top: 4px solid #10b981; border-left: none;">
-            <p><strong>Дипломант:</strong> Елеонора Евгениева Василева[cite: 4]</p>
-            <p><strong>Фак. №:</strong> 6MI3400278[cite: 4]</p>
-            <p><strong>Научен ръководител:</strong> гл. ас. д-р Сия Цолова[cite: 4]</p>
+        <!-- СЛАЙД 3: ЦЕЛ И ЗАДАЧИ -->
+        <div class="slide" id="slide-3">
+            <div class="space-y-6 max-w-5xl mx-auto w-full my-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-white border-l-4 border-emerald-500 pl-4">2. Глобална цел и основни задачи[cite: 1, 2]</h2>
+                <div class="bg-gradient-to-r from-emerald-500/10 to-teal-500/5 p-6 rounded-2xl border border-emerald-500/20 my-4">
+                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block mb-1">Глобална цел[cite: 1, 2]</span>
+                    <p class="text-lg md:text-xl font-medium text-white leading-relaxed">
+                        Проектиране, софтуерна разработка и внедряване на уеб-базирана маркетплейс платформа <strong class="text-emerald-400">AccountPro</strong>, осигуряваща сигурна комуникация и бизнес сътрудничество[cite: 1, 2].
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                    <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-700/50">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 font-bold mb-3">1</div>
+                        <h4 class="font-bold text-white text-sm md:text-base mb-1">Анализ на пазара[cite: 1, 2]</h4>
+                        <p class="text-xs md:text-sm text-slate-400">Детайлно проучване на потребителските сегменти чрез анкети[cite: 1, 2].</p>
+                    </div>
+                    <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-700/50">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 font-bold mb-3">2</div>
+                        <h4 class="font-bold text-white text-sm md:text-base mb-1">Serverless Архитектура[cite: 1, 2]</h4>
+                        <p class="text-xs md:text-sm text-slate-400">Проектиране без нужда от поддръжка на собствен физически сървър[cite: 1, 2].</p>
+                    </div>
+                    <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-700/50">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 font-bold mb-3">3</div>
+                        <h4 class="font-bold text-white text-sm md:text-base mb-1">Софтуерна проверка[cite: 1, 2]</h4>
+                        <p class="text-xs md:text-sm text-slate-400">Реализация на механизъм за синхронизация с официалните регистри[cite: 1, 2].</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <!-- Навигация -->
-    <div class="nav-controls">
-        <button class="nav-btn" onclick="changeSlide(-1)">← Назад</button>
-        <button class="nav-btn" onclick="changeSlide(1)">Напред →</button>
-    </div>
-    
-    <div class="footer-banner">
-        ФМИ • Магистърска програма ТЕИИТ • Фак. №: 6MI3400278[cite: 4]
-    </div>
+        <!-- СЛАЙД 4: ФУНКЦИОНАЛНИ ИЗИСКВАНИЯ -->
+        <div class="slide" id="slide-4">
+            <div class="space-y-6 max-w-5xl mx-auto w-full my-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-white border-l-4 border-emerald-500 pl-4">3. Функционални изисквания към системата[cite: 1, 2]</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+                    <div class="bg-slate-800/60 p-5 rounded-xl border border-slate-700 hover:border-emerald-500/40 transition-all">
+                        <div class="text-emerald-400 text-lg mb-3"><i class="fas fa-filter"></i></div>
+                        <h3 class="font-bold text-white text-sm md:text-base mb-2">Смарт филтриране[cite: 1, 2]</h3>
+                        <p class="text-xs md:text-sm text-slate-400 leading-relaxed">Търсене и филтриране на експерти по местоположение, опит, специализация и реални оценки[cite: 1, 2].</p>
+                    </div>
+                    <div class="bg-slate-800/60 p-5 rounded-xl border border-slate-700 hover:border-emerald-500/40 transition-all">
+                        <div class="text-emerald-400 text-lg mb-3"><i class="fas fa-folder-open"></i></div>
+                        <h3 class="font-bold text-white text-sm md:text-base mb-2">Клиентско портфолио[cite: 1, 2]</h3>
+                        <p class="text-xs md:text-sm text-slate-400 leading-relaxed">Сигурно качване и споделяне на данъчни, счетоводни и фирмени документи в криптирана среда[cite: 1, 2].</p>
+                    </div>
+                    <div class="bg-slate-800/60 p-5 rounded-xl border border-slate-700 hover:border-emerald-500/40 transition-all">
+                        <div class="text-emerald-400 text-lg mb-3"><i class="fas fa-robot"></i></div>
+                        <h3 class="font-bold text-white text-sm md:text-base mb-2">Edge Scraper автоматизация[cite: 1, 2]</h3>
+                        <p class="text-xs md:text-sm text-slate-400 leading-relaxed">Модул за софтуерна проверка в регистъра на ИДЕС за легитимация на одитори[cite: 1, 2].</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div>
+        <!-- СЛАЙД 5: НЕФУНКЦИОНАЛНИ ИЗИСКВАНИЯ -->
+        <div class="slide" id="slide-5">
+            <div class="space-y-6 max-w-5xl mx-auto w-full my-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-white border-l-4 border-emerald-500 pl-4">4. Нефункционални изисквания[cite: 1, 2]</h2>
+                <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                        <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-700/50">
+                            <div class="text-emerald-400 text-2xl mb-2"><i class="fas fa-shield-alt"></i></div>
+                            <h4 class="font-bold text-white text-sm md:text-base mb-1">Информационна сигурност[cite: 1, 2]</h4>
+                            <p class="text-xs text-slate-400">Row-Level Security (RLS) защита директно на ниво редове в базата данни[cite: 1, 2].</p>
+                        </div>
+                        <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-700/50">
+                            <div class="text-emerald-400 text-2xl mb-2"><i class="fas fa-bolt"></i></div>
+                            <h4 class="font-bold text-white text-sm md:text-base mb-1">Бързодействие[cite: 1, 2]</h4>
+                            <p class="text-xs text-slate-400">Време за зареждане и първо изобразяване под 1.5 секунди чрез глобална CDN дистрибуция[cite: 1, 2].</p>
+                        </div>
+                        <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-700/50">
+                            <div class="text-emerald-400 text-2xl mb-2"><i class="fas fa-mobile-alt"></i></div>
+                            <h4 class="font-bold text-white text-sm md:text-base mb-1">Наличност и съвместимост[cite: 2]</h4>
+                            <p class="text-xs text-slate-400">Гарантиран 99.9% ъптайм и напълно адаптивен дизайн за мобилни устройства[cite: 1, 2].</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const video = document.getElementById('demoVideo');
+        <!-- СЛАЙД 6: АРХИТЕКТУРА И МОДЕЛ -->
+        <div class="slide" id="slide-6">
+            <div class="space-y-6 max-w-5xl mx-auto w-full my-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-white border-l-4 border-emerald-500 pl-4">5. Проектиране и софтуерна архитектура[cite: 1, 2]</h2>
+                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                    <h3 class="text-lg font-bold text-white mb-4 text-center">3-слоен Serverless Архитектурен модел[cite: 1, 2]</h3>
+                    <div class="flex flex-col md:flex-row items-center justify-around gap-4 p-4 bg-slate-900/60 rounded-xl border border-slate-700/50 text-center">
+                        <div class="p-4 bg-slate-800 rounded-lg border border-slate-700 w-full md:w-1/4">
+                            <span class="text-xs text-emerald-400 uppercase tracking-wider font-bold block mb-1">Клиентски слой[cite: 1, 2]</span>
+                            <p class="text-sm font-bold text-white">React SPA[cite: 1, 2]</p>
+                            <span class="text-[10px] text-slate-400 block mt-1">Tailwind CSS & Netlify CDN[cite: 2]</span>
+                        </div>
+                        <div class="text-slate-500 text-xl hidden md:block"><i class="fas fa-arrow-right"></i></div>
+                        <div class="p-4 bg-slate-800 rounded-lg border border-slate-700 w-full md:w-1/4">
+                            <span class="text-xs text-emerald-400 uppercase tracking-wider font-bold block mb-1">Облачен слой (BaaS)[cite: 1, 2]</span>
+                            <p class="text-sm font-bold text-white">Supabase API[cite: 1, 2]</p>
+                            <span class="text-[10px] text-slate-400 block mt-1">Auth & RLS Gateway[cite: 1, 2]</span>
+                        </div>
+                        <div class="text-slate-500 text-xl hidden md:block"><i class="fas fa-arrow-right"></i></div>
+                        <div class="p-4 bg-slate-800 rounded-lg border border-slate-700 w-full md:w-1/4">
+                            <span class="text-xs text-emerald-400 uppercase tracking-wider font-bold block mb-1">Слой данни[cite: 1, 2]</span>
+                            <p class="text-sm font-bold text-white">PostgreSQL DB[cite: 1, 2]</p>
+                            <span class="text-[10px] text-slate-400 block mt-1">Релационни транзакции[cite: 2]</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 text-center mt-4">
+                        * Моделът елиминира напълно поддръжката на собствена физическа сървърна инфраструктура[cite: 1, 2].
+                    </p>
+                </div>
+            </div>
+        </div>
 
-    function showSlide(index) {
-        if (index >= slides.length) currentSlide = 0;
-        else if (index < 0) currentSlide = slides.length - 1;
-        else currentSlide = index;
+        <!-- СЛАЙД 7: БАЗА ДАННИ И СИГУРНОСТ -->
+        <div class="slide" id="slide-7">
+            <div class="space-y-6 max-w-5xl mx-auto w-full my-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-white border-l-4 border-emerald-500 pl-4">6. Сигурност на данните и роли (RLS)[cite: 1, 2]</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
+                        <h4 class="font-bold text-white text-base mb-2 flex items-center gap-2">
+                            <i class="fas fa-key text-emerald-400"></i> Row-Level Security (RLS)[cite: 1, 2]
+                        </h4>
+                        <p class="text-xs md:text-sm text-slate-400 leading-relaxed">
+                            Правилата за сигурност са имплементирани директно в ядрото на PostgreSQL базата данни, а не само в клиентския софтуерен код[cite: 1, 2]. Всеки потребител преминава криптографска JWT автентикация и има достъп само до своите собствени записи[cite: 1, 2].
+                        </p>
+                    </div>
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
+                        <h4 class="font-bold text-white text-base mb-2 flex items-center gap-2">
+                            <i class="fas fa-users-cog text-emerald-400"></i> Диференцирани потребителски роли[cite: 1, 2]
+                        </h4>
+                        <ul class="text-xs md:text-sm text-slate-400 space-y-2">
+                            <li><strong class="text-slate-200">• Клиенти:</strong> Търсят експерти, разглеждат верифицирани профили и изпращат запитвания[cite: 1, 2].</li>
+                            <li><strong class="text-slate-200">• Счетоводители:</strong> Управляват дигитално табло, качват сертификати и приемат резервации[cite: 1, 2].</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        slides.forEach(slide => slide.style.display = 'none');
-        slides[currentSlide].style.display = 'flex';
-        
-        // Автоматично спиране на видеото, ако потребителят смени слайда
-        if (currentSlide !== 5 && video) {
-            video.pause();
+        <!-- СЛАЙД 8: ИНТЕРФЕЙС НА ПЛАТФОРМАТА (НАЧАЛНА СТРАНИЦА) -->
+        <div class="slide" id="slide-8">
+            <div class="space-y-6 max-w-5xl mx-auto w-full my-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-white border-l-4 border-emerald-500 pl-4">7. Потребителски интерфейс: Начална страница[cite: 1, 2]</h2>
+                <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 shadow-2xl relative overflow-hidden">
+                    <!-- Макет на браузър -->
+                    <div class="flex items-center gap-1.5 bg-slate-900 px-4 py-2 rounded-t-xl border-b border-slate-800 text-xs text-slate-500">
+                        <div class="w-2.5 h-2.5 rounded-full bg-red-500/40"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-emerald-500/40"></div>
+                        <span class="ml-4 text-[11px] text-slate-400 select-none">account-pro.netlify.app[cite: 2]</span>
+                    </div>
+                    <!-- Съдържание на макета -->
+                    <div class="bg-slate-900/40 p-8 rounded-b-xl space-y-8 text-center border border-t-0 border-slate-800">
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="font-bold text-emerald-400 text-lg">AccountPro[cite: 1, 2]</span>
+                            <span class="text-xs bg-slate-800 px-3 py-1 rounded border border-slate-700 text-slate-300">Вход / Регистрация[cite: 1]</span>
+                        </div>
+                        <div class="max-w-xl mx-auto space-y-4 py-6">
+                            <h3 class="text-xl md:text-2xl font-bold text-white">Намерете Вашия професионален счетоводител[cite: 1, 2]</h3>
+                            <div class="flex gap-2 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
+                                <input type="text" placeholder="Търсене по локация, счетоводна специализация..." class="bg-transparent text-xs text-slate-300 px-3 flex-grow focus:outline-none" disabled>
+                                <button class="bg-emerald-500 text-slate-950 text-xs font-bold px-4 py-2 rounded-lg">Търсене[cite: 1, 2]</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 text-center italic">Фиг. 18: Реализиран потребителски интерфейс на заглавната страница[cite: 1, 2].</p>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 9: ИНТЕРФЕЙС - КАТАЛОГ (ИЗЧИСТЕНИ ЦЕНИ) -->
+        <div class="slide" id="slide-9">
+            <div class="space-y-6 max-w-5xl mx-auto w-full my-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-white border-l-4 border-emerald-500 pl-4">8. Потребителски интерфейс: Каталог[cite: 1, 2]</h2>
+                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700 space-y-3">
+                    <span class="text-xs text-slate-400 font-semibold uppercase block mb-2"><i class="fas fa-info-circle text-emerald-400"></i> Академична корекция: Всички цени са премахнати с цел спазване на академичния стил на защита.</span>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Карта 1 -->
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="font-bold text-white text-sm">Александър К.</h4>
+                                    <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 font-medium">Верифициран</span>
+                                </div>
+                                <p class="text-[11px] text-slate-400"><i class="fas fa-map-marker-alt text-xs mr-1"></i> София • 12г. опит</p>
+                            </div>
+                            <button class="w-full bg-slate-800 text-slate-200 text-xs py-1.5 rounded border border-slate-700 mt-4 font-medium">Преглед</button>
+                        </div>
+                        <!-- Карта 2 -->
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="font-bold text-white text-sm">Антония Н.</h4>
+                                    <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 font-medium">Верифициран</span>
+                                </div>
+                                <p class="text-[11px] text-slate-400"><i class="fas fa-map-marker-alt text-xs mr-1"></i> Пловдив • 8г. опит</p>
+                            </div>
+                            <button class="w-full bg-slate-800 text-slate-200 text-xs py-1.5 rounded border border-slate-700 mt-4 font-medium">Преглед</button>
+                        </div>
+                        <!-- Карта 3 -->
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="font-bold text-white text-sm">Георги Т.</h4>
+                                    <span class="text-[10px] bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded border border-blue-500/20 font-medium">На разположение</span>
+                                </div>
+                                <p class="text-[11px] text-slate-400"><i class="fas fa-map-marker-alt text-xs mr-1"></i> Варна • 15г. опит</p>
+                            </div>
+                            <button class="w-full bg-slate-800 text-slate-200 text-xs py-1.5 rounded border border-slate-700 mt-4 font-medium">Преглед</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 10: РАБОТНО ТАБЛО НА СЧЕТОВОДИТЕЛЯ -->
+        <div class="slide" id="slide-10">
+            <div class="space-y-6 max-w-5xl mx-auto w-full my-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-white border-l-4 border-emerald-500 pl-4">9. Работно табло на счетоводителя[cite: 1, 2]</h2>
+                <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-4 shadow-xl">
+                    <div class="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800 pb-3">
+                        <span class="font-bold text-white"><i class="fas fa-columns mr-1"></i> Табло на счетоводителя[cite: 2]</span>
+                        <span>account-pro.netlify.app/dashboard[cite: 2]</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="p-4 bg-slate-900 rounded-xl border border-slate-800 text-center">
+                            <span class="text-xs text-slate-400 font-medium uppercase tracking-wider block">Активни клиенти[cite: 1, 2]</span>
+                            <span class="text-3xl font-black text-emerald-400 block my-1">14[cite: 1, 2]</span>
+                        </div>
+                        <div class="p-4 bg-slate-900 rounded-xl border border-slate-800 text-center">
+                            <span class="text-xs text-slate-400 font-medium uppercase tracking-wider block">Нови запитвания[cite: 1, 2]</span>
+                            <span class="text-3xl font-black text-yellow-400 block my-1">3[cite: 1, 2]</span>
+                        </div>
+                        <div class="p-4 bg-slate-900 rounded-xl border border-slate-800 text-center col-span-1">
+                            <span class="text-xs text-slate-400 font-medium uppercase tracking-wider block">Следваща среща[cite: 2]</span>
+                            <span class="text-sm font-bold text-white block mt-3">Днес, 16:00 ч.[cite: 1, 2]</span>
+                            <span class="text-[11px] text-slate-400 block">Димитър Петров[cite: 1]</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 text-center italic">Фиг. 19: Контролен софтуерен панел за управление на бизнес ангажименти в реално време[cite: 1, 2].</p>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 11: МОДУЛ ИДЕС SCRAPER -->
+        <div class="slide" id="slide-11">
+            <div class="space-y-6 max-w-5xl mx-auto w-full my-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-white border-l-4 border-emerald-500 pl-4">10. Валидационен модул (ИДЕС Скрапер)[cite: 1, 2]</h2>
+                <div class="bg-slate-800/40 p-6 rounded-2xl border border-slate-700 space-y-4">
+                    <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                        За осигуряване на максимална легитимност е разработен автоматизиран софтуерен модул, който извършва защитено извличане на данни (Scraping) в реално време от публичните софтуерни регистри на Института на дипломираните експерт-счетоводители (ИДЕС) в България[cite: 1, 2].
+                    </p>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-slate-300 space-y-1">
+                        <p class="text-slate-500">// Лог на автоматизирания валидационен процес</p>
+                        <p><span class="text-emerald-400">[INFO]</span> Иницииране на проверка за софтуерен лиценз...</p>
+                        <p><span class="text-emerald-400">[INFO]</span> Свързване с регистъра на ИДЕС през Edge Scraper...</p>
+                        <p><span class="text-teal-400">[SUCCESS]</span> Лицето е открито в списъка на активните одитори. Профилът е верифициран.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 12: РЕЗУЛТАТИ ОТ ТЕСТВАНЕТО -->
+        <div class="slide" id="slide-12">
+            <div class="space-y-6 max-w-5xl mx-auto w-full my-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-white border-l-4 border-emerald-500 pl-4">11. Експериментални резултати и софтуерно тестване</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                    <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-700">
+                        <h4 class="font-bold text-white text-sm md:text-base mb-3"><i class="fas fa-vial text-emerald-400 mr-1"></i> Проведени тестове</h4>
+                        <ul class="text-xs md:text-sm text-slate-400 space-y-2">
+                            <li><strong>• Натоварване:</strong> Изпитания със симулирани 500+ едновременни сесии към Supabase[cite: 1, 2].</li>
+                            <li><strong>• Сигурност:</strong> Проверка за SQL инжекции и опити за заобикаляне на RLS политиките[cite: 1, 2].</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-700">
+                        <h4 class="font-bold text-white text-sm md:text-base mb-3"><i class="fas fa-tachometer-alt text-emerald-400 mr-1"></i> Постигнати метрики</h4>
+                        <ul class="text-xs md:text-sm text-slate-400 space-y-2">
+                            <li><strong>• Response Time:</strong> Средно време за отговор на API заявка от 120ms.</li>
+                            <li><strong>• Трафик:</strong> Минимален разход на мрежови ресурс поради SPA кеширането през Netlify Edge CDN[cite: 2].</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 13: НАУЧНИ ПРИНОСИ -->
+        <div class="slide" id="slide-13">
+            <div class="space-y-6 max-w-5xl mx-auto w-full my-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-white border-l-4 border-emerald-500 pl-4">12. Основни научно-приложни приноси</h2>
+                <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 space-y-4">
+                    <div class="flex gap-4 p-3 bg-slate-900/40 rounded-xl border border-slate-800/60">
+                        <div class="text-emerald-400 text-xl"><i class="fas fa-check-circle"></i></div>
+                        <p class="text-xs md:text-sm text-slate-300">Разработен е работещ софтуерен прототип по съвременна Serverless архитектура за специфичните нужди на българския пазар на счетоводни услуги[cite: 1, 2].</p>
+                    </div>
+                    <div class="flex gap-4 p-3 bg-slate-900/40 rounded-xl border border-slate-800/60">
+                        <div class="text-emerald-400 text-xl"><i class="fas fa-check-circle"></i></div>
+                        <p class="text-xs md:text-sm text-slate-300">Имплементиран е иновативен метод за премахване на традиционните сървъри, заменяйки ги със защитени RLS политики на ниво база данни[cite: 1, 2].</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 14: БЪДЕЩЕ РАЗВИТИЕ (ТЕХНОЛОГИЧНО) -->
+        <div class="slide" id="slide-14">
+            <div class="space-y-6 max-w-5xl mx-auto w-full my-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-white border-l-4 border-emerald-500 pl-4">13. Насоки за бъдещо развитие: Технологии[cite: 1, 2]</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400"><i class="fas fa-brain"></i></div>
+                        <h4 class="font-bold text-white text-base">AI Модул за документи (OCR)[cite: 1, 2]</h4>
+                        <p class="text-xs md:text-sm text-slate-400 leading-relaxed">
+                            Интегриране на изкуствен интелект за автоматично разчитане, класифициране и проверка на сканирани фактури, отчети и данъчни файлове директно в облака[cite: 1, 2].
+                        </p>
+                    </div>
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400"><i class="fas fa-signature"></i></div>
+                        <h4 class="font-bold text-white text-base">Интеграция на КЕП[cite: 1, 2]</h4>
+                        <p class="text-xs md:text-sm text-slate-400 leading-relaxed">
+                            Въвеждане на Квалифициран електронен подпис за сигурно отдалечено подписване на договори, пълномощни и декларации вътре в самата система[cite: 1, 2].
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 15: БЪДЕЩЕ РАЗВИТИЕ (ПАЗАРНО) -->
+        <div class="slide" id="slide-15">
+            <div class="space-y-6 max-w-5xl mx-auto w-full my-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-white border-l-4 border-emerald-500 pl-4">14. Насоки за бъдещо развитие: Пазар[cite: 1, 2]</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center text-teal-400"><i class="fas fa-mobile"></i></div>
+                        <h4 class="font-bold text-white text-base">Мобилно PWA приложение[cite: 1, 2]</h4>
+                        <p class="text-xs md:text-sm text-slate-400 leading-relaxed">
+                            Разработване на Progressive Web Application (PWA) за по-бърз и лесен достъп на потребителите през мобилни устройства без нужда от магазин за приложения[cite: 1, 2].
+                        </p>
+                    </div>
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center text-teal-400"><i class="fas fa-globe"></i></div>
+                        <h4 class="font-bold text-white text-base">Международно разширение[cite: 1, 2]</h4>
+                        <p class="text-xs md:text-sm text-slate-400 leading-relaxed">
+                            Разширяване на софтуерния обхват чрез пълна многоезична поддръжка за чуждестранни компании, стартиращи и опериращи нов бизнес на територията на България[cite: 1, 2].
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 16: ЗАКЛЮЧЕНИЕ -->
+        <div class="slide" id="slide-16">
+            <div class="text-center my-auto space-y-6 max-w-3xl mx-auto">
+                <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight">Благодаря за вниманието![cite: 1, 2]</h1>
+                <p class="text-emerald-400 text-base md:text-lg font-semibold tracking-wide uppercase">
+                    Софтуерна система за търсене и предлагане на счетоводни услуги[cite: 1, 2]
+                </p>
+                <div class="bg-slate-800/40 p-6 rounded-2xl border border-slate-700/60 max-w-md mx-auto space-y-2 text-sm text-slate-300">
+                    <p><strong class="text-white">Дипломант:</strong> Елеонора Евгениева Василева[cite: 1, 2]</p>
+                    <p><strong class="text-white">Фак. №:</strong> 6MI3400278[cite: 1, 2]</p>
+                    <p><strong class="text-white">Научен ръководител:</strong> гл. ас. д-р Сия Цолова[cite: 1, 2]</p>
+                </div>
+                <div class="text-slate-500 text-xs pt-4">
+                    ФМИ • Магистърска програма ТЕИИТ[cite: 1, 2]
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ИНТЕРАКТИВНОУПРАВЛЕНИЕ И БУТОНИ -->
+    <footer class="bg-slate-800/50 backdrop-blur border-t border-slate-700/50 px-6 py-4 flex justify-between items-center sticky bottom-0 z-50">
+        <button id="prev-btn" class="bg-slate-700 hover:bg-slate-600 active:scale-95 text-slate-200 text-xs md:text-sm font-semibold px-4 py-2.5 rounded-xl transition-all flex items-center gap-2 border border-slate-600 disabled:opacity-30 disabled:pointer-events-none">
+            <i class="fas fa-arrow-left"></i> Назад[cite: 1, 2]
+        </button>
+        <div class="flex gap-1.5 hidden sm:flex">
+            <!-- Кръгчета за бърз преход -->
+            <script>
+                for(let i=1; i<=16; i++) {
+                    document.write(`<button onclick="goToSlide(${i})" id="dot-${i}" class="w-2.5 h-2.5 rounded-full bg-slate-600 transition-all duration-200 hover:bg-emerald-400"></button>`);
+                }
+            </script>
+        </div>
+        <button id="next-btn" class="bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-slate-950 text-xs md:text-sm font-bold px-4 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/10">
+            Напред[cite: 1, 2] <i class="fas fa-arrow-right"></i>
+        </button>
+    </footer>
+
+    <!-- ЛОГИКА ЗА СМЯНА НА СЛАЙДОВЕТЕ -->
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 16;
+
+        function updateSlide() {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            document.getElementById(`slide-${currentSlide}`).classList.add('active');
+            
+            // Навигационни елементи
+            document.getElementById('current-index').innerText = currentSlide;
+            document.getElementById('progress').style.width = `${(currentSlide / totalSlides) * 100}%`;
+            document.getElementById('prev-btn').disabled = (currentSlide === 1);
+            
+            if (currentSlide === totalSlides) {
+                document.getElementById('next-btn').innerHTML = 'Начало <i class="fas fa-redo"></i>';
+            } else {
+                document.getElementById('next-btn').innerHTML = 'Напред[cite: 1, 2] <i class="fas fa-arrow-right"></i>';
+            }
+
+            // Актуализация на точките
+            for(let i=1; i<=totalSlides; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if(dot) {
+                    if(i === currentSlide) {
+                        dot.className = "w-5 h-2.5 rounded-full bg-emerald-500 transition-all duration-200";
+                    } else {
+                        dot.className = "w-2.5 h-2.5 rounded-full bg-slate-600 transition-all duration-200 hover:bg-emerald-400";
+                    }
+                }
+            }
         }
-    }
 
-    function changeSlide(direction) {
-        showSlide(currentSlide + direction);
-    }
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlide();
+        }
 
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'ArrowRight') changeSlide(1);
-        if (event.key === 'ArrowLeft') changeSlide(-1);
-    });
-</script>
+        document.getElementById('next-btn').addEventListener('click', () => {
+            if(currentSlide < totalSlides) currentSlide++;
+            else currentSlide = 1;
+            updateSlide();
+        });
 
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            if(currentSlide > 1) currentSlide--;
+            updateSlide();
+        });
+
+        // Управление от клавиатурата
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'ArrowRight' || e.key === ' ') {
+                if(currentSlide < totalSlides) currentSlide++;
+                updateSlide();
+            } else if(e.key === 'ArrowLeft') {
+                if(currentSlide > 1) currentSlide--;
+                updateSlide();
+            }
+        });
+
+        // Първоначално зареждане
+        updateSlide();
+    </script>
 </body>
 </html>
